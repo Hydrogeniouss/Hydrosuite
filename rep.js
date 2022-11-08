@@ -5,5 +5,6 @@ export async function main(ns) {
     var threads = Math.floor(ram/cost)
     
     ns.run("reps.js", threads)
+    ns.toast("Now gaining extra rep with " + threads )
     }
     // Depends on reps.js

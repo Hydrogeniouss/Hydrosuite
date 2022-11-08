@@ -5,6 +5,11 @@ await ns.wget("https://github.com/Hydrogeniouss/Hydrosuite/blob/main/open.js", '
 await ns.wget("https://github.com/Hydrogeniouss/Hydrosuite/blob/main/remote.js", 'remote.js')
 await ns.wget("https://github.com/Hydrogeniouss/Hydrosuite/blob/main/stocks.js", 'stocks.js')
 await ns.wget("https://github.com/Hydrogeniouss/Hydrosuite/blob/main/ui.js", 'ui.js')
+await ns.wget("https://github.com/Hydrogeniouss/Hydrosuite/blob/main/reps.js", 'reps.js')
+await ns.wget("https://github.com/Hydrogeniouss/Hydrosuite/blob/main/rep.js", "rep.js")
+
+
+
 await ns.sleep(1000)
 ns.toast("Downloaded all scripts")
 }
