@@ -15,7 +15,7 @@ export async function main(ns) {
 	}
 	await ns.sleep(20)
 	if (i > pmoney / gbcost) {
-		var ram = i
+		var ram = i / 2
 		ns.print(ram)
 		if (ns.getPurchasedServers.length < 25) {
 			ns.purchaseServer("server", ram)
