@@ -1,7 +1,6 @@
 /** @param {NS} ns */
 export async function main(ns) {
-	var target = ns.args[1] // use second arg for target
-	var threads = ns.args[0] // use first arg for threads
+	var target = ns.args[0]
 	var ports = ns.getServerNumPortsRequired(target)
 
 	if (ports >= 1) {
@@ -74,6 +73,7 @@ export async function main(ns) {
 		}
 
 	}
+	let threads = Math.floor((ns.getServerMaxRam("home") - ns.getServerUsedRam("home")-(3.7+4.05)) / 2.2)
 	ns.nuke(target)
 	ns.run("remote.js", 1, target)
 	ns.run("hack.js", threads, target)
