@@ -5,7 +5,7 @@ export async function main(ns) {
 	while (true) {
 		let memnames = ns.gang.getMemberNames() //get currently used names
 		let memmount = ns.gang.getMemberNames().length // get amount of members
-		let territory = ns.gang.getGangInformation().territory
+		let territory = ns.gang.getGangInformation().territory * 100
 		let chances = 0
 		let wanted = ns.gang.getGangInformation().wantedPenalty
 		let respect = ns.gang.getGangInformation().respect
@@ -17,19 +17,19 @@ export async function main(ns) {
 		}
 
 		if (ns.gang.getChanceToWinClash(enemies[0]) > 55) {
-			let chances = chances++
+			chances++
 		}
 		if (ns.gang.getChanceToWinClash(enemies[1]) > 55) {
-			let chances = chances++
+			chances++
 		}
 		if (ns.gang.getChanceToWinClash(enemies[2]) > 55) {
-			let chances = chances++
+			chances++
 		}
 		if (ns.gang.getChanceToWinClash(enemies[3]) > 55) {
-			let chances = chances++
+			chances++
 		}
 		if (ns.gang.getChanceToWinClash(enemies[5]) > 55) {
-			let chances = chances++
+			chances++
 		}
 
 		if (chances = 6) {
@@ -43,33 +43,34 @@ export async function main(ns) {
 
 
 		for (let i = 0; memmount > i; i++) { //cycle through members
-			ns.print(i)
-			await ns.sleep(20)
 			let member = ns.gang.getMemberInformation(memnames[i])
 			let res = ns.gang.getAscensionResult(memnames[i])
+			await ns.sleep(20)
 
-			if (member.str_asc_mult * 0.5 < res.str) { // ascension part
-				ns.gang.ascendMember(memnames[i])
+			if (res != undefined) {
+				if (1.5 < res.str) { // ascension part
+					ns.gang.ascendMember(memnames[i])
 
+				}
 			}
 
-			if (member.str_asc_mult < 10) {
+			if (member.str < 5000 || member.str_asc_mult < 30) {
 				ns.gang.setMemberTask(memnames[i], "Train Combat")
 			}
 
-			if (member.str_asc_mult > 10 && territory != 100 && member.str > 2000) {
+			if (member.str_asc_mult > 30 && territory != 100 && member.str > 5000) {
 				ns.gang.setMemberTask(memnames[i], "Territory Warfare")
 			}
 
-			if (member.str_asc_mult > 10 && territory >= 100 && member.str > 2000 && wanted < 5 && respect < 1e8) {
+			if (member.str_asc_mult > 30 && territory >= 100 && member.str > 5000 && wanted < 5 && respect < 5e8) {
 				ns.gang.setMemberTask(memnames[i], "Terrorism")
 			}
 
-			if (member.str_asc_mult > 10 && territory >= 100 && member.str > 2000 && wanted > 5) {
+			if (member.str_asc_mult > 30 && territory >= 100 && member.str > 5000 && wanted > 5) {
 				ns.gang.setMemberTask(memnames[i], "Vigilante Justice")
 			}
 
-			if (member.str_asc_mult > 10 && territory >= 100 && member.str > 2000 && wanted < 5 && respect > 1e8) {
+			if (member.str_asc_mult > 30 && territory >= 100 && member.str > 5000 && wanted < 5 && respect > 5e8) {
 				ns.gang.setMemberTask(memnames[i], "Human Trafficking")
 			}
 		}
