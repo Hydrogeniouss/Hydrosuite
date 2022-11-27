@@ -2,41 +2,48 @@
 export async function main(ns) {
 	const names = ["Maine", "Kiwi", "Pilar", "Rebecca", "Lucy", "Falco", "David", "Michiru", "Nazuna", "V", "Nero", "Dante"]
 	const enemies = ["Tetrads", "The Syndicate", "The Dark Army", "Speakers for the Dead", "NiteSec", "The Black Hand"]
+	ns.disableLog("ALL")
 	while (true) {
 		let memnames = ns.gang.getMemberNames() //get currently used names
 		let memmount = ns.gang.getMemberNames().length // get amount of members
 		let territory = ns.gang.getGangInformation().territory * 100
-		let chances = 0
+		var chances = 0
 		let wanted = ns.gang.getGangInformation().wantedPenalty
 		let respect = ns.gang.getGangInformation().respect
 		await ns.sleep(2000)
 
-		if (memmount < 12 && ns.gang.canRecruitMember()) { //recrouts if possible
+		if (memmount < 12 && ns.gang.canRecruitMember()) { //recruits if possible
 			ns.gang.recruitMember(names[memmount])
 
 		}
 
-		if (ns.gang.getChanceToWinClash(enemies[0]) > 55) {
-			chances++
+		if (ns.gang.getChanceToWinClash(enemies[0]) * 100 > 55) {
+			var chances = chances + 1
 		}
-		if (ns.gang.getChanceToWinClash(enemies[1]) > 55) {
-			chances++
+		if (ns.gang.getChanceToWinClash(enemies[1]) * 100 > 55) {
+			var chances = chances + 1
 		}
-		if (ns.gang.getChanceToWinClash(enemies[2]) > 55) {
-			chances++
+		if (ns.gang.getChanceToWinClash(enemies[2]) * 100 > 55) {
+			var chances = chances + 1
 		}
-		if (ns.gang.getChanceToWinClash(enemies[3]) > 55) {
-			chances++
+		if (ns.gang.getChanceToWinClash(enemies[3]) * 100 > 55) {
+			var chances = chances + 1
 		}
-		if (ns.gang.getChanceToWinClash(enemies[5]) > 55) {
-			chances++
+		if (ns.gang.getChanceToWinClash(enemies[4]) * 100 > 55) {
+			var chances = chances + 1
+		}
+		if (ns.gang.getChanceToWinClash(enemies[5]) * 100 > 55) {
+			var chances = chances + 1
 		}
 
-		if (chances = 6) {
-			ns.gang.setTerritoryWarfare(true)
-		} else {
+		ns.print("Winchance " + chances)
+
+		if (chances != 6) {
 			ns.gang.setTerritoryWarfare(false)
-			chances = 0
+		var chances = 0
+		} else {
+			ns.gang.setTerritoryWarfare(true)
+			
 		}
 
 
@@ -56,6 +63,10 @@ export async function main(ns) {
 
 			if (member.str < 5000 || member.str_asc_mult < 30) {
 				ns.gang.setMemberTask(memnames[i], "Train Combat")
+			}
+
+			if (member.str < 500 && member.str_asc_mult > 4 && memmount < 8){
+				ns.gang.setMemberTask(memnames[i], "Terrorism")
 			}
 
 			if (member.str_asc_mult > 30 && territory != 100 && member.str > 5000) {
