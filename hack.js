@@ -7,9 +7,8 @@ export async function main(ns) {
 	while (true) {
 		var cur = ns.getServerMoneyAvailable(target)
 
-		await ns.sleep(10)
 
-		if (cur >= max * 0.75) { //only hacks when current is above 75% of max
+		if (cur >= max * 0.9) { //only hacks when current is above 90% of max
 			await ns.hack(target)
 		} else {
 			await ns.grow(target)
