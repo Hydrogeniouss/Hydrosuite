@@ -26,7 +26,7 @@ export async function main(ns) {
 			path.unshift(parent)
 			target = parent
 		}
-		let result = seen[i] + " Hacking required: " + hackreq + " " + access + " Layer: " + path.length
+		let result = seen[i] + " | Hacking required: " + hackreq + " | " + access + " | Layer: " + path.length
 		ns.tprint(result)
 	}
 }
