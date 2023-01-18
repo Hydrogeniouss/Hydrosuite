@@ -11,6 +11,7 @@ export async function main(ns) {
 		seen.push(...scanned)
 		adj.push(...scanned)
 	}
+	ns.tprintf("-----------------------------------------------------------------------------------")
 	for (let i = 1; i < seen.length; i++) {
 		let server = ns.getServer(seen[i])
 		let hackreq = ns.getServerRequiredHackingLevel(seen[i])
@@ -26,7 +27,7 @@ export async function main(ns) {
 			path.unshift(parent)
 			target = parent
 		}
-		let result = seen[i] + " | Hacking required: " + hackreq + " | " + access + " | Layer: " + path.length
-		ns.tprint(result)
+		ns.tprintf("%s | Hacking required: %d | %s | Layer: %d", seen[i], hackreq, access, path.length)
 	}
+	ns.tprintf("-----------------------------------------------------------------------------------")
 }
