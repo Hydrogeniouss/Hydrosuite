@@ -27,7 +27,8 @@ export async function main(ns) {
 			path.unshift(parent)
 			target = parent
 		}
-		ns.tprintf("%s | Hacking required: %d | %s | Layer: %d", seen[i], hackreq, access, path.length)
+		let cct = ns.ls(seen[i], ".cct")
+		ns.tprintf("%s | Hacking required: %d | %s | Layer: %d | Contracts: %d", seen[i], hackreq, access, path.length, cct.length)
 	}
 	ns.tprintf("-----------------------------------------------------------------------------------")
 }
