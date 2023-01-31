@@ -4,7 +4,7 @@ export async function main(ns) {
 		await ns.sleep(1e4)
 		let freeram = ns.getServerMaxRam("home")
 		if ( ns.getScriptRam("main.js") < freeram){
-			ns.spawn("start.js")
+			ns.spawn("main.js")
 		}
 	}
 }
